@@ -10,7 +10,17 @@ def inicio(request):
 
 def zapatillas(request):
     
-    zapatilla = Zapatillas(marca='Asics', descripcion='Running', año=2022)
-    zapatilla.save()
+    return render(request, 'inicio/zapatillas.html')
+ 
+def crear_zapatillas(request):
+   
+   if request.method == 'POST':
+      
+      marca = request.POST.get('marca')
+      descripcion = request.POST.get('descripcion')
+      año = request.POST.get('anio')
+   
+      zapatilla = Zapatillas(marca=marca, descripcion=descripcion, año=año)
+      zapatilla.save()
     
-    return render(request, 'inicio/zapatillas.html', {'zapatilla':zapatilla})
+   return render(request, 'inicio/crear_zapatillas.html', {})
