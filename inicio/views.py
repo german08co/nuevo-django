@@ -12,6 +12,8 @@ def zapatillas(request):
     
     return render(request, 'inicio/zapatillas.html')
  
+ 
+ 
 def crear_zapatillas(request):
    
    if request.method == 'POST':
