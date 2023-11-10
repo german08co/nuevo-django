@@ -1,12 +1,11 @@
 from django.urls import path
-from inicio.views import inicio, zapatillas, crear_zapatillas
+from . import views
 
 
 urlpatterns = [
-    
-    path('', inicio,name='inicio'),
-    path('zapatillas/', zapatillas, name='zapatillas'),
-    path('zapatillas/crear/', crear_zapatillas, name='crear_zapatillas')
+    path('', views.inicio, name='inicio'),
+    path('posteos/', views.posteos, name='posteos'),
+    path('logout/', views.exit, name='exit'),
     
     
 ]

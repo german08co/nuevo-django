@@ -1,28 +1,31 @@
-
-from django.shortcuts import render
-from inicio.models import Zapatillas
+from django.contrib.auth import logout
+from django.shortcuts import render, redirect
+from django.contrib.auth.decorators import login_required
 
 
 def inicio(request):
-       
-   return render(request, 'inicio/inicio.html', {})
+    return render(request, 'inicio/inicio.html')
 
 
-def zapatillas(request):
+@login_required
+def posteos(request):
+    return render(request, 'inicio/posteos.html')
+
+
+def exit(request):
+    logout(request)
+    return redirect('inicio')
     
-    return render(request, 'inicio/zapatillas.html')
- 
- 
- 
-def crear_zapatillas(request):
-   
-   if request.method == 'POST':
-      
-      marca = request.POST.get('marca')
-      descripcion = request.POST.get('descripcion')
-      año = request.POST.get('anio')
-   
-      zapatilla = Zapatillas(marca=marca, descripcion=descripcion, año=año)
-      zapatilla.save()
     
-   return render(request, 'inicio/crear_zapatillas.html', {})
+
+# def loguearse(request):
+#     if request.method == 'POST':
+#         username = request.POST['username']
+#         password = request.POST['password']
+#         user = authenticate(request, username=username, password=password)
+#         if user is not None:
+#             login(request, user)
+#             return redirect('pagina_despues_del_logueo')
+#         else:
+#             return render(request, 'inicio/login.html', {'error': 'Credenciales incorrectas'})
+#     return render(request, 'inicio/login.html')
